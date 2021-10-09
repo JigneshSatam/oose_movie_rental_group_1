@@ -16,7 +16,7 @@ public class Customer {
         return _name;
     }
 
-    public String statement() {
+    public String getTestStatement() {
         String  result = "Rental Record for " + getName() + "\n";
 
         for (Rental rental: _rentals) {
@@ -29,6 +29,22 @@ public class Customer {
         result += "Amount owed is " + calculateTotalRent() + "\n";
         result += "You earned " + calculateTotalFrequentRenterPoints() +
                   " frequent renter points";
+        return result;
+    }
+    
+    public String getXMLStatement() {
+        String  result = "<name> " + getName() + " </name>\n";
+
+        for (Rental rental: _rentals) {
+            // show figures for this rental
+            result += "<movie>\n\t\t<name> " + rental.getMovie().getTitle() + " </name>\n" +
+                      "\t\t<rent> " + rental.calculateRental() + " </rent>\n</movie>\n";
+        }
+
+        // add footer lines
+        result += "<TotalRent> " + calculateTotalRent() + " </TotalRent>\n" +
+        	"<FrequentRenterPoints> " + calculateTotalFrequentRenterPoints() + 
+        	" </FrequentRenterPoints>\n";
         return result;
     }
 
@@ -48,8 +64,17 @@ public class Customer {
 		return totalFrequentRenterPoints;
 	}
 
-//    public static void main(String args[]) {
-////         CustomerTest.shouldNotPrintAnytingIfNoRentals();
-//
-//    }
+    public static void main(String[] args) {
+    	Customer customer = new Customer("Sam");
+        customer.addRental(new Rental(new Movie("Movie1", Movie.REGULAR), 1));
+        customer.addRental(new Rental(new Movie("Movie2", Movie.NEW_RELEASE), 3));
+        customer.addRental(new Rental(new Movie("Movie3", Movie.CHILDRENS), 1));
+        
+        System.out.println("====Text Output====");
+        System.out.println(customer.getTestStatement());
+        
+        System.out.println();
+        System.out.println("====XML Output====");
+        System.out.println(customer.getXMLStatement());
+    }
 }
