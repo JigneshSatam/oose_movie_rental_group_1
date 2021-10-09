@@ -1,30 +1,26 @@
 public class Movie {
 
-    public static final int CHILDRENS   = 2;
-    public static final int REGULAR     = 0;
-    public static final int NEW_RELEASE = 1;
-
     private String _title;
-    private Price _priceCode;
+    private PriceType _priceCode;
 
-    public Movie(String title, int priceCode) {
+    public Movie(String title, PriceCode priceCode) {
         _title = title;
         setPriceCode(priceCode);
     }
 
-    public int getPriceCode() {
+    public PriceCode getPriceCode() {
         return _priceCode.getPrice();
     }
 
-    public void setPriceCode(int type) {
+    public void setPriceCode(PriceCode type) {
         switch (type) {
-        case Movie.CHILDRENS:
+        case CHILDRENS:
         	_priceCode = new ChildrenPrice();
         	break;
-        case Movie.REGULAR:
+        case REGULAR:
         	_priceCode = new RegularPrice();
         	break;
-        case Movie.NEW_RELEASE:
+        case NEW_RELEASE:
         	_priceCode = new NewReleasePrice();
         	break;
         default:

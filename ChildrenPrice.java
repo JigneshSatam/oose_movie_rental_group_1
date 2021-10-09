@@ -1,7 +1,7 @@
-public class ChildrenPrice extends Price {
+public class ChildrenPrice extends PriceType {
 	@Override
-	int getPrice() {
-		return Movie.CHILDRENS;
+	PriceCode getPrice() {
+		return PriceCode.CHILDRENS;
 	}
 
 	@Override

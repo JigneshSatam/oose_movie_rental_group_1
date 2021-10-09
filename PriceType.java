@@ -1,5 +1,5 @@
-public abstract class Price {
-	abstract int getPrice();
+public abstract class PriceType {
+	abstract PriceCode getPrice();
 	abstract double calculateRental(int numberOfDaysRented);
 	
 	int calculateFrequentRenterPoints(int numberOfDaysRented) {

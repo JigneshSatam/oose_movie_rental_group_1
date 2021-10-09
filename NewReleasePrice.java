@@ -1,8 +1,8 @@
 
-public class NewReleasePrice extends Price {
+public class NewReleasePrice extends PriceType {
 	@Override
-	int getPrice() {
-		return Movie.NEW_RELEASE;
+	PriceCode getPrice() {
+		return PriceCode.NEW_RELEASE;
 	}
 	
 	@Override

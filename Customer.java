@@ -16,17 +16,17 @@ public class Customer {
         return _name;
     }
 
-    public String getTestStatement() {
+    public String getTextStatement() {
         String  result = "Rental Record for " + getName() + "\n";
 
         for (Rental rental: _rentals) {
-            // show figures for this rental
+            // show figures for the rental
             result += "\t" + rental.getMovie().getTitle() +
                       "\t" + rental.calculateRental() + "\n";
         }
 
         // add footer lines
-        result += "Amount owed is " + calculateTotalRent() + "\n";
+        result += "Amount owed is " + calculateTotalRental() + "\n";
         result += "You earned " + calculateTotalFrequentRenterPoints() +
                   " frequent renter points";
         return result;
@@ -36,19 +36,19 @@ public class Customer {
         String  result = "<name> " + getName() + " </name>\n";
 
         for (Rental rental: _rentals) {
-            // show figures for this rental
-            result += "<movie>\n\t\t<name> " + rental.getMovie().getTitle() + " </name>\n" +
+            // show figures for the rental
+            result += "<movie>\n\t\t<name> " + rental.getMovieTitle() + " </name>\n" +
                       "\t\t<rent> " + rental.calculateRental() + " </rent>\n</movie>\n";
         }
 
         // add footer lines
-        result += "<TotalRent> " + calculateTotalRent() + " </TotalRent>\n" +
+        result += "<TotalRent> " + calculateTotalRental() + " </TotalRent>\n" +
         	"<FrequentRenterPoints> " + calculateTotalFrequentRenterPoints() + 
         	" </FrequentRenterPoints>\n";
         return result;
     }
 
-    private double calculateTotalRent() {
+    private double calculateTotalRental() {
 		double totalRent = 0;
         for (Rental rental: _rentals) {
         	totalRent += rental.calculateRental();
@@ -66,12 +66,12 @@ public class Customer {
 
     public static void main(String[] args) {
     	Customer customer = new Customer("Sam");
-        customer.addRental(new Rental(new Movie("Movie1", Movie.REGULAR), 1));
-        customer.addRental(new Rental(new Movie("Movie2", Movie.NEW_RELEASE), 3));
-        customer.addRental(new Rental(new Movie("Movie3", Movie.CHILDRENS), 1));
+        customer.addRental(new Rental(new Movie("Movie1", PriceCode.REGULAR), 1));
+        customer.addRental(new Rental(new Movie("Movie2", PriceCode.NEW_RELEASE), 3));
+        customer.addRental(new Rental(new Movie("Movie3", PriceCode.CHILDRENS), 1));
         
         System.out.println("====Text Output====");
-        System.out.println(customer.getTestStatement());
+        System.out.println(customer.getTextStatement());
         
         System.out.println();
         System.out.println("====XML Output====");

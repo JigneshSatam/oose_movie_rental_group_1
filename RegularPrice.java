@@ -1,8 +1,8 @@
 
-public class RegularPrice extends Price {
+public class RegularPrice extends PriceType {
 	@Override
-	int getPrice() {
-		return Movie.REGULAR;
+	PriceCode getPrice() {
+		return PriceCode.REGULAR;
 	}
 
 	@Override
