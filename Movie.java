@@ -41,12 +41,6 @@ public class Movie {
 	}
 
 	int calculateFrequentRenterPoints(int numberOfDaysRented) {
-		// One extra frequent renter point for a two day new release rental
-		if ((getPriceCode() == Movie.NEW_RELEASE) &&
-	        (numberOfDaysRented > 1)) {
-	    	return 2;
-	    }
-
-	    return 1;
+		return _priceCode.calculateFrequentRenterPoints(numberOfDaysRented);
 	}
 }
